@@ -4,28 +4,19 @@
 #include <vector>
 #include "ASpell.hpp"
 #include "ATarget.hpp"
+#include "SpellBook.hpp"
 
 class Warlock
 {
     private:
             std::string _name;
             std::string _title;
-            std::vector<ASpell*> spells;
+            SpellBook   book;
             
             Warlock(){}
             Warlock(const Warlock& warlock){*this = warlock;}
-            Warlock &operator=(const Warlock &rhs)
-            {
-                _name = rhs._name;
-                _title = rhs._title;
+            Warlock &operator=(const Warlock &rhs){_name = rhs._name; _title = rhs._title; return *this;}
 
-                for(std::vector<ASpell*>::iterator it(this->spells.begin()); it != this->spells.end(); it++)
-                    delete (*it);
-                spells.clear();
-                for(std::vector<ASpell*>::const_iterator it(rhs.spells.begin()); it != rhs.spells.end(); it++)
-                    spells.push_back((*it)->clone());
-                return *this;
-            }
     public:
             Warlock(const std::string &name, const std::string &title): _name(name) , _title(title)
             {
@@ -48,44 +39,21 @@ class Warlock
 
             void	learnSpell(ASpell *s)
             {
-                if (!s)
-                    return ;
-                std::vector<ASpell*>::const_iterator it(this->spells.begin());
-                for(;it != this->spells.end(); it++)
-                {
-                    if(s->getName() == (*it)->getName())
-                    {
-                        return;
-                    }
-                }
-                this->spells.push_back(s);
+                    book.learnSpell(s);
             }
 
             void	forgetSpell(const std::string &s)
             {
-                std::vector<ASpell*>::iterator it(this->spells.begin());
-                for(;it != this->spells.end();)
-                {
-                    if(s == (*it)->getName())
-                    {
-                        delete (*it);
-                        it = spells.erase(it);
-                    }
-                    else
-                        it++;
-                }
+                    book.forgetSpell(s);
             }
 
-            void	launchSpell(const std::string &s, const ATarget &target) const
+            void	launchSpell(const std::string &s, const ATarget &target)
             {
-                std::vector<ASpell*>::const_iterator it(this->spells.begin());
-                for(;it != this->spells.end(); it++)
-                {
-                    if(s == (*it)->getName())
-                    {
-                        (*it)->launch(target);
-                    }
-                }
+                const ATarget *ptr = &target;
+                ASpell *spell = book.createSpell(s);
+                if (!spell || ptr == NULL)
+                    return ;
+                spell->launch(target);
             }
             
 };
