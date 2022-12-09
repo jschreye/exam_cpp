@@ -11,7 +11,6 @@ class Fwoosh : public ASpell
 		virtual ~Fwoosh(){}
 
 		ASpell *clone() const { return new Fwoosh(*this); }
-    private:
 };
 
 #endif

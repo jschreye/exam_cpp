@@ -11,7 +11,6 @@ class Fireball : public ASpell
 		virtual ~Fireball(){}
 
 		ASpell *clone() const { return new Fireball(*this); }
-    private:
 };
 
 #endif

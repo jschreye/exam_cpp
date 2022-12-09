@@ -1,35 +1,35 @@
 #ifndef WARLOCK_HPP
-# define WARLOCK_HPP
+#define WARLOCK_HPP
+
 #include <iostream>
 
-class Warlock
-{
-    private:
-            std::string _name;
-            std::string _title;
+class Warlock {
 
-            Warlock(){}
-            Warlock(const Warlock& warlock){*this = warlock;}
-            Warlock &operator=(const Warlock & rhs){this->_name = rhs._name; this->_title = rhs._title; return *this;}
-    public:
-            Warlock(const std::string &name, const std::string &title): _name(name) , _title(title)
-            {
-                std::cout << _name << ": This looks like another boring day." << std::endl;
-            }
-            virtual ~Warlock()
-            {
-                std::cout << _name << ": My job here is done!" << std::endl;
-            }
+	private:
 
-            const std::string   &getName() const {return this->_name;}
-            const std::string   &getTitle() const {return this->_title;}
+		std::string name;
+		std::string title;
 
-            void setTitle(const std::string &title){this->_title = title;}
+		Warlock(){}
+		Warlock(const Warlock &rhs){*this = rhs;}
+		Warlock &operator=(const Warlock &rhs){name = rhs.name; title = rhs.title; return *this;}
+	public:
 
-            void	introduce() const 
-            {
-                std::cout << this->_name << ": I am " << this->_name << ", " << this->_title << "!" << std::endl;
-            }
+		Warlock(const std::string &name, const std::string title)
+			: name(name), title(title) 
+		{
+			std::cout << name << ": This looks like another boring day." << std::endl;
+		}
+		virtual ~Warlock(){
+			std::cout << name << ": My job here is done!" << std::endl;
+		}
+
+		const std::string &getTitle() const{ return this->title;}
+		const std::string &getName() const{ return this->name;}
+		void	setTitle(const std::string &s){ this->title = s;}
+
+		void	introduce() const {
+			std::cout << name << ": I am " << name << ", " << title << "!" << std::endl;
+		}
 };
-
 #endif
