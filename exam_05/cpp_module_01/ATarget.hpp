@@ -14,13 +14,18 @@ class ATarget {
 		ATarget();
 
 	public:
-		ATarget(std::string type);
-		ATarget(ATarget const &copy);
-		virtual ~ATarget();
+		ATarget (std::string type): _type(type) {}
+		ATarget (ATarget const &copy): _type(copy._type) {}
+		virtual ~ATarget(){}
 
-		ATarget &operator=(ATarget const &right);
+		ATarget &operator=(ATarget const &right)
+		{
+			if (&right != this)
+				this->_type = right._type;
+			return (*this);
+		}
 
-		const std::string &getType() const;
+		const std::string &getType() const {return this->_type;}
 
 		void getHitBySpell(ASpell const &spell) const;
 

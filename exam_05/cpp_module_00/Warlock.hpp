@@ -15,15 +15,27 @@ class Warlock {
 		Warlock &operator=(Warlock const &right);
 
 	public:
-		Warlock(std::string name, std::string title);
-		virtual ~Warlock();
+		Warlock(std::string name, std::string title): _name(name), _title(title)
+		{
+			std::cout << this->_name << ": This looks like another boring day." << std::endl;
+		}
+		virtual ~Warlock ()
+		{
+			std::cout << this->_name << ": My job here is done!" << std::endl;
+		}
 
-		const std::string &getName() const;
-		const std::string &getTitle() const;
+		const std::string &getName() const {return this->_name;}
+		const std::string &getTitle() const {return this->_title;}
 
-		void setTitle (std::string const &title);
+		void setTitle (std::string const &title) 
+		{
+			this->_title = title;
+		}
 
-		void introduce () const;
+		void introduce () const 
+		{
+			std::cout << this->_name << ": I am " << this->_name << ", " << this->_title << "!" << std::endl;
+		}
 };
 
 #endif

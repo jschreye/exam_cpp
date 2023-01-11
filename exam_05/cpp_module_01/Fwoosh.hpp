@@ -8,10 +8,13 @@
 class Fwoosh: public ASpell {
 
 	public:
-		Fwoosh();
-		virtual ~Fwoosh();
+		Fwoosh (): ASpell("Fwoosh", "fwooshed") {}
+		virtual ~Fwoosh () {}
 
-		virtual ASpell *clone () const;
+		virtual ASpell *clone () const 
+		{
+			return (new Fwoosh());
+		}
 };
 
 #endif

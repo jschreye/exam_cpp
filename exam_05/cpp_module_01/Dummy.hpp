@@ -5,13 +5,18 @@
 #include <string>
 #include "ATarget.hpp"
 
-class Dummy: public ATarget {
-
+class Dummy: public ATarget
+{
 	public:
-		Dummy();
-		virtual ~Dummy();
+		Dummy (): ATarget("Target Practice Dummy") {}
 
-		virtual ATarget *clone () const;
+		virtual ~Dummy () {}
+
+		virtual ATarget *clone () const 
+		{
+			return (new Dummy());
+		}
+
 };
 
 #endif
