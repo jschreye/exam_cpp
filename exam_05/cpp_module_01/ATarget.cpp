@@ -1,6 +1,7 @@
+#include "ASpell.hpp"
 #include "ATarget.hpp"
 
-void ATarget::getHitBySpell(ASpell const &spell) const
+void ATarget::getHitBySpell(const ASpell &rhs) const
 {
-	std::cout << this->_type << "has been " << spell.getEffects() << "!" << std::endl;
+    std::cout << this->_type << " has been " << rhs.getEffects() << "!" << std::endl;
 }
