@@ -3,11 +3,11 @@
 #include "ATarget.hpp"
 #include "Dummy.hpp"
 #include "Fwoosh.hpp"
-#include "BrickWall.hpp"
-#include "Polymorph.hpp"
-#include "Fireball.hpp"
-#include "SpellBook.hpp"
 #include "TargetGenerator.hpp"
+#include "SpellBook.hpp"
+#include "BrickWall.hpp"
+#include "Fireball.hpp"
+#include "Polymorph.hpp"
 
 int main()
 {

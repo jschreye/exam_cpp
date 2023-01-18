@@ -9,23 +9,31 @@ class ATarget;
 class ATarget
 {
     protected:
+
         std::string _type;
 
         ATarget();
-    public :
+
+    public:
 
         ATarget(const std::string type): _type(type){}
-        const std::string &getType() const { return this->_type; }
+        ATarget(const ATarget &rhs): _type(rhs._type){}
         ATarget &operator=(const ATarget &rhs)
         {
             if (&rhs != this)
-                this->_type = rhs._type;
-            return (*this);            
+            {
+                _type = rhs._type;
+            }
+            return (*this);
         }
-
-        void getHitBySpell(const ASpell &rhs) const;
-        virtual ATarget *clone() const = 0;
         virtual ~ATarget(){}
+        const std::string &getType() const
+        {
+            return (this->_type);
+        }
+        virtual ATarget *clone() const = 0;
+
+        void getHitBySpell(const ASpell &spell) const;
 };
 
 #endif
